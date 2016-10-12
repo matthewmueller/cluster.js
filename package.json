@@ -1,8 +1,12 @@
 {
   "name": "cluster.js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "easily cluster your functions",
-  "keywords": [],
+  "keywords": [
+    "cluster",
+    "map",
+    "cpu"
+  ],
   "author": "Matthew Mueller <mattmuelle@gmail.com>",
   "repository": {
     "type": "git",
@@ -12,10 +16,6 @@
     "cluster-map": "^1.0.2",
     "co": "^4.6.0",
     "once": "1.4.0"
-  },
-  "devDependencies": {
-    "mocha": "*",
-    "should": "*"
   },
   "main": "index"
 }

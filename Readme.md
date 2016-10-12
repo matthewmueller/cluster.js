@@ -1,29 +1,36 @@
 
 # cluster.js
 
-  easily cluster your functions
+  Little helper for clustering functions across your cpu cores.
 
-## License 
+## Install
 
-(The MIT License)
+```
+yarn add cluster.js
+```
 
-Copyright (c) 2016 Matthew Mueller &lt;mattmuelle@gmail.com&gt;
+## Example
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+```js
+const cluster = require('cluster.js')
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+const tasks = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l' ]
 
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+cluster(tasks, function (task) {
+  console.log('calculating', task)
+  const fib = fibonacci(40)
+  console.log('calculated', task)
+  return { task: task, n: fib }
+})
+  .then(console.log)
+  .catch(console.error)
+
+function fibonacci (n) {
+  if (n < 2) return 1
+  return fibonacci(n - 2) + fibonacci(n - 1)
+}
+```
+
+## License
+
+MIT
